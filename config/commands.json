@@ -17,6 +17,12 @@
         "help": "order-check [username]",
         "description": "Checks an open order of a specific username"
     },
+    "order-join": {
+        "alias": [],
+        "endpoint": "#",
+        "help": "order-join [username] [item-id] [quantity]",
+        "description": "Adds a request to an open order"
+    },
     "menu": {
         "alias": [],
         "endpoint": "#",

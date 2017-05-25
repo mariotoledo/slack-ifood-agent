@@ -1,5 +1,6 @@
 var request = require('request');
 var util    = require('../util');
+var slackTerminal   = require('slack-terminalize')
 
 var orders_service = require('../service/orders_service')
 
@@ -21,19 +22,28 @@ module.exports = function (param) {
             return;
         }
 
-        var message = 'Order at ' + order.restaurant_id + ' open by ' + order.owner.username + ':\n\n';
+        var message = 'Order at ' + order.restaurant_id + ' open by @' + order.owner.username + ':\n\n';
 
         if(Object.keys(order.requests).length == 0){
             message += 'No requests were added yet';
         } else {
-            Object.keys(order.requests).forEach(function(username){
-                var userRequestItems = order.requests[username].items;
+            Object.keys(order.requests).forEach(function(user_id){
+                var userRequestItems = order.requests[user_id];
 
-                if(userRequestItems && userRequestItems.length > 0){
-                    message += '- @' + username + ':\n';
+                if(userRequestItems && Object.keys(userRequestItems).length > 0){
+                    var user = slackTerminal.getRTMClient().dataStore.getUserById(user_id);
+
+                    message += '- @' + user.name + ':\n';
                 
-                    userRequestItems.forEach(function(item){
-                        message += '\t- ' + item.name + ' (R$ ' + item.price + ')\n';
+                    Object.keys(userRequestItems).forEach(function(key){
+                        message += '\t- ' + 
+                                    userRequestItems[key].name + 
+                                    ' [x' + 
+                                    userRequestItems[key].quantity + 
+                                    ']' +
+                                    ' (R$ ' + 
+                                    (userRequestItems[key].price * userRequestItems[key].quantity) + 
+                                    ')\n';
                     });  
                 }
             });
