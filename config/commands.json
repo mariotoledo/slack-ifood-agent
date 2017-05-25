@@ -1,10 +1,22 @@
 {
+    "help": {
+        "alias": [ "halp" ],
+        "endpoint": "#",
+        "help": "help [command](optional)",
+        "description": "To get help on all supported commands, or a specified command"
+    },
 	"order": {
 		"alias": [],
 		"endpoint": "#",
-		"help": "request [restaurant-name]",
-		"description": "Starts a request to the restaurant name"
+		"help": "order [restaurant-name]",
+		"description": "Starts an order request to the restaurant name"
 	},
+    "menu": {
+        "alias": [],
+        "endpoint": "#",
+        "help": "menu [restaurant-name]",
+        "description": "Checks the restaurant's menu"
+    },
 	"error": {
 		"exclude": true
 	}

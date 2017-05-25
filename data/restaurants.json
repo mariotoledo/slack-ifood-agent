@@ -1,0 +1,16 @@
+{
+    "nilo": {
+        "name": "Nilo Esfihas",
+        "menu": {
+            "esfiha": {
+                "name": "Esfiha de Carne",
+                "price": 5.50,
+                "description": "Uma esfiha dahora de carne"
+            }, "pizza": {
+                "name": "Pizza",
+                "price": 15.50,
+                "description": "Uma pizza dahora"
+            }
+        }
+    }
+}

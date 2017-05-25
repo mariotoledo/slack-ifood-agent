@@ -2,7 +2,7 @@ module.exports = (function OrdersService() {
 	var _orders = [];
 
 	return {
-		add: function add(user_id, restaurant_id){
+		init: function init(user_id, restaurant_id){
 			console.log('restaurant_id', restaurant_id);
 			var current_order = this.find_by_user(user_id);
 
