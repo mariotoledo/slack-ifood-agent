@@ -2,7 +2,7 @@ var slackTerminal   = require('slack-terminalize')
 var restaurants_service = require('../service/restaurants_service');
 
 module.exports = (function OrdersService() {
-	var _orders = [];
+	var _orders = {};
 
 	return {
 		init: function init(user_id, restaurant_id){
@@ -26,16 +26,13 @@ module.exports = (function OrdersService() {
 
         	var user = slackTerminal.getRTMClient().dataStore.getUserById(user_id);
 
-			_orders.push({
-				owner: {
-					id: user_id,
-					username: user.name
-				},
+			_orders[user_id] = {
+				username: user.name,
 				restaurant_id: restaurant_id,
 				restaurant_name: restaurant.name,
 				requests: {
 				}
-			});
+			};
 
 			return {
 				success: true,
@@ -97,20 +94,42 @@ module.exports = (function OrdersService() {
 				message: item.name + ' (x' + quantity + ') added succesfully by @' + user.name
 			};
 		},
+		remove_order: function remove_order(user_id){
+			var order = this.find_by_user(user_id);
+
+			if(order){
+				delete _orders['user_id'];
+			}
+		},
+		remove_request: function remove_request(user_id, owner_username, item_id, quantity){
+			var order = this.find_by_username(owner_username);
+
+			if(owner_username.startsWith('<@')){
+	            var owner_id = owner_username.replace('<@', '').replace('>', '');
+	            order = this.find_by_user(owner_id);
+	        } else {
+	            order = this.find_by_username(owner_username);
+	        }
+
+	        if(!order) {
+	        	return {
+					success: false,
+					message: 'Order from ' + owner_username + ' not found'
+				};
+	        }
+		},
 		find_by_user: function find_by_user(user_id){
-			return _orders.find(function(item){
-				return item.owner.id === user_id;
-			});
+			return _orders[user_id];
 		}, 
 		find_by_username: function find_by_username(username){
-			return _orders.find(function(item){
-				return item.owner.username === username;
-			});
+			return _orders[Object.key(_orders).find(function(key){
+				return _orders[key].username === username;
+			})];
 		}, 
 		find_by_restaurant: function find_by_restaurant(restaurant_id){
-			return _orders.find(function(item){
-				return item.restaurant_id === restaurant_id;
-			});
+			return _orders[Object.key(_orders).find(function(key){
+				return _orders[key].restaurant_id === restaurant_id;
+			})];
 		}
 	}
 })();

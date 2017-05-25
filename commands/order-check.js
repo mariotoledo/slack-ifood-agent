@@ -22,7 +22,7 @@ module.exports = function (param) {
             return;
         }
 
-        var message = 'Order at ' + order.restaurant_id + ' open by @' + order.owner.username + ':\n\n';
+        var message = 'Order at ' + order.restaurant_id + ' open by @' + order.username + ':\n\n';
 
         if(Object.keys(order.requests).length == 0){
             message += 'No requests were added yet';
