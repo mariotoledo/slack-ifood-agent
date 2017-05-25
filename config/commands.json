@@ -1,0 +1,11 @@
+{
+	"order": {
+		"alias": [],
+		"endpoint": "#",
+		"help": "request [restaurant-name]",
+		"description": "Starts a request to the restaurant name"
+	},
+	"error": {
+		"exclude": true
+	}
+}

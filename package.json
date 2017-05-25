@@ -1,0 +1,26 @@
+{
+  "name": "slack-ifood-agent",
+  "version": "1.0.0",
+  "description": "Slack bot to help iFood orders",
+  "main": "index.js",
+  "dependencies": {
+    "request": "^2.65.0",
+    "slack-terminalize": "^1.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.paypal.com:gnramesh/slack-sample-cli.git"
+  },
+  "engines": {
+    "node": "0.12.x"
+  },
+  "keywords": [
+    "slack",
+    "ifood"
+  ],
+  "author": "Mario Toledo",
+  "license": "MIT"
+}
