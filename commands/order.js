@@ -7,7 +7,7 @@ module.exports = function (param) {
 	if(param.args.length > 0)
 		util.postMessage(param.channel, 
                          orders_service.init(
-                            param.user_id, 
+                            param.user, 
                             param.args[0]).message
                          );
 };

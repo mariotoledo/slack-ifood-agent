@@ -11,6 +11,12 @@
 		"help": "order [restaurant-name]",
 		"description": "Starts an order request to the restaurant name"
 	},
+    "order-check": {
+        "alias": [],
+        "endpoint": "#",
+        "help": "order [username]",
+        "description": "Checks an open order of a specific username"
+    },
     "menu": {
         "alias": [],
         "endpoint": "#",

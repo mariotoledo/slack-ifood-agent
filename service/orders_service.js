@@ -1,9 +1,10 @@
+var slackTerminal   = require('slack-terminalize')
+
 module.exports = (function OrdersService() {
 	var _orders = [];
 
 	return {
 		init: function init(user_id, restaurant_id){
-			console.log('restaurant_id', restaurant_id);
 			var current_order = this.find_by_user(user_id);
 
 			if(current_order)
@@ -20,20 +21,31 @@ module.exports = (function OrdersService() {
 					message: 'There is already an open order at ' + current_order.restaurant_id
 				};
 
+        	var user = slackTerminal.getRTMClient().dataStore.getUserById(user_id);
+
 			_orders.push({
-				owner: user_id,
+				owner: {
+					id: user_id,
+					username: user.name
+				},
 				restaurant_id: restaurant_id,
-				requests: []
+				requests: {
+				}
 			});
 
 			return {
 				success: true,
-				message: 'Order at ' + restaurant_id + ' started successfully'
+				message: 'Order at ' + restaurant_id + ' created by @' + user.name + ' started successfully'
 			};
 		}, 
 		find_by_user: function find_by_user(user_id){
 			return _orders.find(function(item){
-				return item.owner === user_id;
+				return item.owner.id === user_id;
+			});
+		}, 
+		find_by_username: function find_by_user(username){
+			return _orders.find(function(item){
+				return item.owner.username === username;
 			});
 		}, 
 		find_by_restaurant: function find_by_restaurant(restaurant_id){
