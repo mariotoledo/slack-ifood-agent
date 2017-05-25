@@ -8,20 +8,26 @@
 	"order": {
 		"alias": [],
 		"endpoint": "#",
-		"help": "order [restaurant-name]",
+		"help": "order [restaurant-id]",
 		"description": "Starts an order request to the restaurant name"
 	},
     "order-check": {
         "alias": [],
         "endpoint": "#",
-        "help": "order [username]",
+        "help": "order-check [username]",
         "description": "Checks an open order of a specific username"
     },
     "menu": {
         "alias": [],
         "endpoint": "#",
-        "help": "menu [restaurant-name]",
+        "help": "menu [restaurant-id]",
         "description": "Checks the restaurant's menu"
+    },
+    "restaurants": {
+        "alias": [],
+        "endpoint": "#",
+        "help": "restaurants",
+        "description": "Gets all restaurants and ids"
     },
 	"error": {
 		"exclude": true

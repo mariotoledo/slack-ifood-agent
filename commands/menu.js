@@ -8,9 +8,9 @@ module.exports = function (param) {
         if(!restaurant)
             util.postMessage(param.channel, 'Restaurant not found');
         else{
-            var menu = '';
+            var message = '';
             Object.keys(restaurant.menu).forEach(function(key){
-                menu += 
+                message += 
                     key + 
                     ': ' + 
                     restaurant.menu[key].name + 
@@ -18,7 +18,7 @@ module.exports = function (param) {
                     restaurant.menu[key].price + 
                     ')\n';
             });
-            util.postMessage(param.channel, menu);
+            util.postMessage(param.channel, message);
         }
     }
 };
