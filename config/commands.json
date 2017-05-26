@@ -47,6 +47,18 @@
         "help": "order-unjoin [username] [item-id] [quantity]",
         "description": "Removes a request from an open order"
     },
+    "set-delivery-price": {
+        "alias": [],
+        "endpoint": "#",
+        "help": "set-delivery-price [price]",
+        "description": "Sets the delivery price"
+    },
+    "order-close": {
+        "alias": [],
+        "endpoint": "#",
+        "help": "order-close",
+        "description": "Closes your open order"
+    },
     "menu": {
         "alias": [],
         "endpoint": "#",

@@ -142,7 +142,7 @@ module.exports = (function OrdersService() {
 	        if(!order) {
 	        	return {
 					success: false,
-					message: 'Only owners of open orders can add shared requests'
+					message: 'You are not an owners or you do not have any open orders'
 				};
 	        }
 
@@ -182,6 +182,30 @@ module.exports = (function OrdersService() {
 	        return {
 				success: true,
 				message: item.name + ' (x' + quantity + ') added succesfully to everyone'
+			};
+		},
+		set_delivery_price: function set_delivery_price(user_id, price){
+			var order = this.find_by_user(user_id);
+
+	        if(!order) {
+	        	return {
+					success: false,
+					message: 'You are not an owners or you do not have any open orders'
+				};
+	        }
+
+	        if(price <= 0){
+	        	return {
+					success: false,
+					message: 'Price must be greater than 0'
+				};
+	        }
+
+	        order.deliveryPrice = price;
+
+	        return {
+				success: true,
+				message: 'R$ ' + price + ' set as delivery price by @' + order.username
 			};
 		},
 		remove_request: function remove_request(user_id){
@@ -252,6 +276,70 @@ module.exports = (function OrdersService() {
 	        return {
 				success: true,
 				message: 'Request for ' + request.name + ' (x' + quantity + ') removed successfully'
+			};
+		},
+		close: function close(user_id){
+			var order = this.find_by_user(user_id);
+
+			if(!order){
+				return {
+					success: false,
+					message: 'You do not have any open orders'
+				};
+			}
+
+			if(!order.requests || Object.keys(order.requests).length == 0){
+				delete _orders[user_id];
+
+				return {
+					success: false,
+					message: 'Order from ' + order.username + ' without any request'
+				};
+			}
+
+			var sharedValue = 0;
+
+			var usersValue = [];
+
+			if(order.deliveryPrice)
+				sharedValue = order.deliveryPrice;
+
+			Object.keys(order.requests).forEach(function(request_user_id){
+				var request = order.requests[request_user_id];
+
+				var totalValue = 0;
+
+				Object.keys(request).forEach(function(item_id){
+					totalValue += request[item_id].price * request[item_id].quantity;
+				});
+
+				if(request_user_id == 'shared'){
+					sharedValue += totalValue;
+				} else {
+					var user = slackTerminal.getRTMClient().dataStore.getUserById(request_user_id);
+
+					usersValue.push({
+						username: user.name,
+						value: totalValue
+					});
+				}
+			});
+
+			var splitedSharedValue = sharedValue / usersValue.length;
+
+			usersValue.forEach(function(item){
+				item.value += splitedSharedValue;
+			});
+
+			var message = '@' + order.username + ' closed the order. These are the total price each one must pay:\n\n';
+
+			usersValue.forEach(function(item){
+				message += '- @' + item.username + ': R$ ' + item.value;
+			});
+
+			return {
+				success: true,
+				message: message
 			};
 		},
 		find_by_user: function find_by_user(user_id){

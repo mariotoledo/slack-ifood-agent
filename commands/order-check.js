@@ -25,7 +25,7 @@ module.exports = function (param) {
         var message = 'Order at ' + order.restaurant_id + ' open by @' + order.username + ':\n\n';
 
         if(Object.keys(order.requests).length == 0){
-            message += 'No requests were added yet';
+            message += 'No requests were added yet\n';
         } else {
             Object.keys(order.requests).forEach(function(user_id){
                 var userRequestItems = order.requests[user_id];
@@ -44,9 +44,13 @@ module.exports = function (param) {
                                     ' (R$ ' + 
                                     (userRequestItems[key].price * userRequestItems[key].quantity) + 
                                     ')\n';
-                    });  
+                    }); 
                 }
             });
+        }
+
+        if(order.deliveryPrice){
+            message += '\nDelivery price: R$ ' + order.deliveryPrice;
         }
 
         util.postMessage(param.channel,message);

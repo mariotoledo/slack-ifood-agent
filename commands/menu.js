@@ -18,6 +18,7 @@ module.exports = function (param) {
                     restaurant.menu[key].price + 
                     ')\n';
             });
+
             util.postMessage(param.channel, message);
         }
     }
