@@ -29,6 +29,12 @@
         "help": "order-custom [username] [price]",
         "description": "Adds a custom request to an open order"
     },
+    "order-shared": {
+        "alias": [],
+        "endpoint": "#",
+        "help": "order-shared [item-id] [quantity]",
+        "description": "Adds a request to everyone in an open order"
+    },
     "order-delete": {
         "alias": [],
         "endpoint": "#",

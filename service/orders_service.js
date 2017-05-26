@@ -136,6 +136,54 @@ module.exports = (function OrdersService() {
 				message: 'R$ ' + price + ' added succesfully by @' + user.name
 			};
 		},
+		join_shared: function join_shared(user_id, item_id, quantity){
+			var order = this.find_by_user(user_id);
+
+	        if(!order) {
+	        	return {
+					success: false,
+					message: 'Only owners of open orders can add shared requests'
+				};
+	        }
+
+	        var item = restaurants_service.find_item_by_id(order.restaurant_id, item_id);
+
+	        if(!item){
+	        	return {
+					success: false,
+					message: 'Item ' + item_id + ' not found. Use "menu ' + order.restaurant_id + '"" to check all items'
+				};
+	        }
+
+	        if(!quantity || quantity < 0){
+	            return {
+					success: false,
+					message: 'Quantity must be highter than 1'
+				};
+	        }
+
+	        var user = slackTerminal.getRTMClient().dataStore.getUserById(user_id);
+
+	        if(!order.requests.hasOwnProperty('shared'))
+	        	order.requests['shared'] = {};
+
+	        var userRequest = order.requests['shared'];
+
+	        if(!userRequest.hasOwnProperty(item_id))
+	        	userRequest[item_id] = {
+	        		name: item.name,
+	        		price: item.price,
+	        		quantity: quantity
+	        	}
+	        else
+	        	userRequest[item_id].quantity = parseInt(userRequest[item_id].quantity) + 
+	        								    parseInt(quantity);
+
+	        return {
+				success: true,
+				message: item.name + ' (x' + quantity + ') added succesfully to everyone'
+			};
+		},
 		remove_request: function remove_request(user_id){
 			var order = this.find_by_user(user_id);
 
