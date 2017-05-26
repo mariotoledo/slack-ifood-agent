@@ -94,14 +94,24 @@ module.exports = (function OrdersService() {
 				message: item.name + ' (x' + quantity + ') added succesfully by @' + user.name
 			};
 		},
-		remove_order: function remove_order(user_id){
+		remove_request: function remove_request(user_id){
 			var order = this.find_by_user(user_id);
 
-			if(order){
-				delete _orders['user_id'];
+			if(!order){
+				return {
+					success: false,
+					message: 'You do not have any open orders'
+				};
 			}
+
+			delete _orders[user_id];
+
+			return {
+				success: true,
+				message: 'Order for ' + order.restaurant_id + ' removed successfully'
+			};
 		},
-		remove_request: function remove_request(user_id, owner_username, item_id, quantity){
+		unjoin_order: function unjoin_order(user_id, owner_username, item_id, quantity){
 			var order = this.find_by_username(owner_username);
 
 			if(owner_username.startsWith('<@')){
@@ -117,17 +127,53 @@ module.exports = (function OrdersService() {
 					message: 'Order from ' + owner_username + ' not found'
 				};
 	        }
+
+	        if(!order.requests.hasOwnProperty(user_id)){
+	        	return {
+					success: false,
+					message: 'You do not have any request for this order'
+				};
+	        }
+
+	        if(!order.requests[user_id].hasOwnProperty(item_id)){
+	        	return {
+					success: false,
+					message: 'You do not have any request for this item_id'
+				};
+	        }
+
+	        if(!quantity || quantity < 0){
+	            return {
+					success: false,
+					message: 'Quantity must be highter than 1'
+				};
+	        }
+
+	        var request = (order.requests[user_id])[item_id];
+
+	        if(Object.keys(order.requests).length == 1 && request.quantity <= quantity){
+	        	delete order.requests[user_id]
+	        } else if (request.quantity <= quantity) {
+	        	delete (order.requests[user_id])[item_id]
+	        } else {
+	        	request.quantity = parseInt(request.quantity) - parseInt(quantity);
+	        }
+
+	        return {
+				success: true,
+				message: 'Request for ' + request.name + ' (x' + quantity + ') removed successfully'
+			};
 		},
 		find_by_user: function find_by_user(user_id){
 			return _orders[user_id];
 		}, 
 		find_by_username: function find_by_username(username){
-			return _orders[Object.key(_orders).find(function(key){
+			return _orders[Object.keys(_orders).find(function(key){
 				return _orders[key].username === username;
 			})];
 		}, 
 		find_by_restaurant: function find_by_restaurant(restaurant_id){
-			return _orders[Object.key(_orders).find(function(key){
+			return _orders[Object.keys(_orders).find(function(key){
 				return _orders[key].restaurant_id === restaurant_id;
 			})];
 		}

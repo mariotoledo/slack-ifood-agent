@@ -23,6 +23,18 @@
         "help": "order-join [username] [item-id] [quantity]",
         "description": "Adds a request to an open order"
     },
+    "order-delete": {
+        "alias": [],
+        "endpoint": "#",
+        "help": "order-delete",
+        "description": "Removes the open order that you made"
+    },
+    "order-unjoin": {
+        "alias": [],
+        "endpoint": "#",
+        "help": "order-unjoin [username] [item-id] [quantity]",
+        "description": "Removes a request from an open order"
+    },
     "menu": {
         "alias": [],
         "endpoint": "#",
