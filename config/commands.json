@@ -23,6 +23,12 @@
         "help": "order-join [username] [item-id] [quantity]",
         "description": "Adds a request to an open order"
     },
+    "order-custom": {
+        "alias": [],
+        "endpoint": "#",
+        "help": "order-custom [username] [price]",
+        "description": "Adds a custom request to an open order"
+    },
     "order-delete": {
         "alias": [],
         "endpoint": "#",

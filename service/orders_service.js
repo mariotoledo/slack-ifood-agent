@@ -94,6 +94,48 @@ module.exports = (function OrdersService() {
 				message: item.name + ' (x' + quantity + ') added succesfully by @' + user.name
 			};
 		},
+		join_custom: function join_custom(user_id, owner_username, price){
+			var order;
+
+			if(owner_username.startsWith('<@')){
+	            var owner_id = owner_username.replace('<@', '').replace('>', '');
+	            order = this.find_by_user(owner_id);
+	        } else {
+	            order = this.find_by_username(owner_username);
+	        }
+
+	        if(!order) {
+	        	return {
+					success: false,
+					message: 'Order from ' + owner_username + ' not found'
+				};
+	        }
+
+	        if(price <= 0){
+	        	return {
+					success: false,
+					message: 'Price must be greater than 0'
+				};
+	        }
+
+	        var user = slackTerminal.getRTMClient().dataStore.getUserById(user_id);
+
+	        if(!order.requests.hasOwnProperty(user_id))
+	        	order.requests[user_id] = {};
+
+	        var userRequest = order.requests[user_id];
+
+	        userRequest.custom = {
+        		name: 'custom',
+        		price: price,
+        		quantity: 1
+        	}
+
+        	return {
+				success: true,
+				message: 'R$ ' + price + ' added succesfully by @' + user.name
+			};
+		},
 		remove_request: function remove_request(user_id){
 			var order = this.find_by_user(user_id);
 
