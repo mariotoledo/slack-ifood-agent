@@ -297,6 +297,13 @@ module.exports = (function OrdersService() {
 				};
 			}
 
+			if(!order.deliveryPrice){
+				return {
+					success: false,
+					message: 'You have not set the delivery price. Please, use set-delivery-price command'
+				};
+			}
+
 			var sharedValue = 0;
 
 			var usersValue = [];
@@ -331,16 +338,68 @@ module.exports = (function OrdersService() {
 				item.value += splitedSharedValue;
 			});
 
-			var message = '@' + order.username + ' closed the order. These are the total price each one must pay:\n\n';
+			var detailMessage = this.detail_message(order.username);
+
+			var message = detailMessage + '\n\n----------------------------- \n\n' + 
+						  '@' + order.username + ' closed the order. These are the total price each one must pay:\n\n';
 
 			usersValue.forEach(function(item){
 				message += '- @' + item.username + ': R$ ' + item.value;
 			});
 
+			delete _orders[user_id];
+
 			return {
 				success: true,
 				message: message
 			};
+		},
+		detail_message: function detail_message(username){
+	        var order;
+
+	        if(username.startsWith('<@')){
+	            var user_id = username.replace('<@', '').replace('>', '');
+	            order = this.find_by_user(user_id);
+	        } else {
+	            order = this.find_by_username(username);
+	        }
+
+	        if(!order) {
+	            return 'Order from ' + username + ' not found';
+	        }
+
+			var message = 'Order at ' + order.restaurant_id + ' open by @' + order.username + ':\n\n';
+
+	        if(Object.keys(order.requests).length == 0){
+	            message += 'No requests were added yet\n';
+	        } else {
+	            Object.keys(order.requests).forEach(function(user_id){
+	                var userRequestItems = order.requests[user_id];
+
+	                if(userRequestItems && Object.keys(userRequestItems).length > 0){
+	                    var user = slackTerminal.getRTMClient().dataStore.getUserById(user_id);
+
+	                    message += '- @' + user.name + ':\n';
+	                
+	                    Object.keys(userRequestItems).forEach(function(key){
+	                        message += '\t- ' + 
+	                                    userRequestItems[key].name + 
+	                                    ' [x' + 
+	                                    userRequestItems[key].quantity + 
+	                                    ']' +
+	                                    ' (R$ ' + 
+	                                    (userRequestItems[key].price * userRequestItems[key].quantity) + 
+	                                    ')\n';
+	                    }); 
+	                }
+	            });
+	        }
+
+	        if(order.deliveryPrice){
+	            message += '\nDelivery price: R$ ' + order.deliveryPrice;
+	        }
+
+	        return message;
 		},
 		find_by_user: function find_by_user(user_id){
 			return _orders[user_id];

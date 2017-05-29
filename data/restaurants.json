@@ -2,14 +2,495 @@
     "nilo": {
         "name": "Nilo Esfihas",
         "menu": {
-            "esfiha": {
-                "name": "Esfiha de Carne",
-                "price": 5.50,
-                "description": "Uma esfiha dahora de carne"
-            }, "pizza": {
-                "name": "Pizza",
-                "price": 15.50,
-                "description": "Uma pizza dahora"
+            "alho-com-mussarela":{
+                "name":"Alho com Mussarela",
+                "price":5.9,
+                "description":""
+            },
+            "aliche-com-mussarela":{
+                "name":"Aliche com Mussarela",
+                "price":5.7,
+                "description":""
+            },
+            "atum":{
+                "name":"Atum",
+                "price":4.9,
+                "description":"temperado (cebola e tomate)"
+            },
+            "atum-com-catupiry":{
+                "name":"Atum com Catupiry",
+                "price":5.7,
+                "description":""
+            },
+            "atum-com-cheddar":{
+                "name":"Atum com Cheddar",
+                "price":5.4,
+                "description":""
+            },
+            "atum-com-mussarela":{
+                "name":"Atum com Mussarela",
+                "price":5.7,
+                "description":""
+            },
+            "atum-com-provolone":{
+                "name":"Atum com Provolone",
+                "price":5.4,
+                "description":""
+            },
+            "bacon-com-catupiry":{
+                "name":"Bacon com Catupiry",
+                "price":5.7,
+                "description":""
+            },
+            "bacon-com-cheddar":{
+                "name":"Bacon com Cheddar",
+                "price":5.4,
+                "description":""
+            },
+            "bacon-com-mussarela":{
+                "name":"Bacon com Mussarela",
+                "price":5.7,
+                "description":""
+            },
+            "bacon-com-provolone":{
+                "name":"Bacon com Provolone",
+                "price":5.4,
+                "description":""
+            },
+            "baiana":{
+                "name":"Baiana",
+                "price":5.9,
+                "description":"calabresa,ovo,cebola e pimenta"
+            },
+            "bauru":{
+                "name":"Bauru",
+                "price":5.4,
+                "description":"presunto e mussarela"
+            },
+            "calabresa--com-mussarela":{
+                "name":"Calabresa  com Mussarela",
+                "price":5.7,
+                "description":"moida"
+            },
+            "calabresa-com-catupiry":{
+                "name":"Calabresa com Catupiry",
+                "price":5.7,
+                "description":""
+            },
+            "calabresa-defumada":{
+                "name":"Calabresa defumada",
+                "price":4.9,
+                "description":"moida"
+            },
+            "calabresa-defumada-com-cheddar":{
+                "name":"Calabresa Defumada com Cheddar",
+                "price":5.4,
+                "description":""
+            },
+            "calabresa-defumada-com-provolone":{
+                "name":"Calabresa Defumada com Provolone",
+                "price":5.4,
+                "description":""
+            },
+            "carne":{
+                "name":"Carne",
+                "price":4.9,
+                "description":""
+            },
+            "carne-com-catupiry":{
+                "name":"Carne com Catupiry",
+                "price":5.7,
+                "description":""
+            },
+            "carne-com-cheddar":{
+                "name":"Carne com Cheddar",
+                "price":5.4,
+                "description":""
+            },
+            "carne-com-mussarela":{
+                "name":"Carne com Mussarela",
+                "price":5.7,
+                "description":""
+            },
+            "carne-com-provolone":{
+                "name":"Carne com Provolone",
+                "price":5.4,
+                "description":""
+            },
+            "carne-seca-com-catupiry":{
+                "name":"Carne Seca com Catupiry",
+                "price":6.2,
+                "description":""
+            },
+            "carne-seca-com-cheddar":{
+                "name":"Carne Seca com Cheddar",
+                "price":6.2,
+                "description":""
+            },
+            "carne-seca-com-mussarela":{
+                "name":"Carne Seca com Mussarela",
+                "price":6.2,
+                "description":""
+            },
+            "catupiry":{
+                "name":"Catupiry",
+                "price":5.4,
+                "description":""
+            },
+            "dois-queijos":{
+                "name":"Dois Queijos",
+                "price":5.4,
+                "description":"mussarela e catupiry"
+            },
+            "escarola":{
+                "name":"Escarola",
+                "price":4.9,
+                "description":""
+            },
+            "escarola-com-bacon":{
+                "name":"Escarola com Bacon",
+                "price":5.4,
+                "description":""
+            },
+            "escarola-com-catupiry":{
+                "name":"Escarola com Catupiry",
+                "price":5.7,
+                "description":""
+            },
+            "escarola-com-cheddar":{
+                "name":"Escarola com Cheddar",
+                "price":5.4,
+                "description":""
+            },
+            "escarola-com-mussarela":{
+                "name":"Escarola com Mussarela",
+                "price":5.7,
+                "description":""
+            },
+            "escarola-com-provolone":{
+                "name":"Escarola com Provolone",
+                "price":5.4,
+                "description":""
+            },
+            "escarola-com-ricota":{
+                "name":"Escarola com Ricota",
+                "price":5.4,
+                "description":""
+            },
+            "carne-seca-com-provolone":{
+                "name":"carne seca com provolone",
+                "price":6.2,
+                "description":""
+            },
+            "esfiha-cheddar":{
+                "name":"Esfiha Cheddar",
+                "price":5.4,
+                "description":""
+            },
+            "frango":{
+                "name":"Frango",
+                "price":4.9,
+                "description":""
+            },
+            "frango-com-catupiry":{
+                "name":"Frango com Catupiry",
+                "price":5.7,
+                "description":""
+            },
+            "frango-com-cheddar":{
+                "name":"Frango com Cheddar",
+                "price":5.4,
+                "description":""
+            },
+            "frango-com-mussarela":{
+                "name":"Frango com Mussarela",
+                "price":5.7,
+                "description":""
+            },
+            "frango-com-provolone":{
+                "name":"Frango com Provolone",
+                "price":5.4,
+                "description":""
+            },
+            "lombo-com-catupiry":{
+                "name":"Lombo com Catupiry",
+                "price":5.7,
+                "description":""
+            },
+            "lombo-com-cheddar":{
+                "name":"Lombo com Cheddar",
+                "price":5.4,
+                "description":""
+            },
+            "lombo-com-mussarela":{
+                "name":"Lombo com Mussarela",
+                "price":5.7,
+                "description":""
+            },
+            "lombo-com-provolone":{
+                "name":"Lombo com Provolone",
+                "price":5.4,
+                "description":""
+            },
+            "milho-com-catupiry":{
+                "name":"Milho com Catupiry",
+                "price":5.7,
+                "description":""
+            },
+            "milho-com-mussarela":{
+                "name":"Milho com Mussarela",
+                "price":5.7,
+                "description":""
+            },
+            "mussarela":{
+                "name":"Mussarela",
+                "price":4.9,
+                "description":""
+            },
+            "mussarela-com-tomate-seco":{
+                "name":"Mussarela com Tomate Seco",
+                "price":6.2,
+                "description":""
+            },
+            "palmito":{
+                "name":"Palmito",
+                "price":4.9,
+                "description":""
+            },
+            "palmito-com-catupiry":{
+                "name":"Palmito com Catupiry",
+                "price":5.7,
+                "description":""
+            },
+            "palmito-com-cheddar":{
+                "name":"Palmito com Cheddar",
+                "price":5.4,
+                "description":""
+            },
+            "palmito-com-mussarela":{
+                "name":"Palmito com Mussarela",
+                "price":5.7,
+                "description":""
+            },
+            "palmito-com-provolone":{
+                "name":"Palmito com Provolone",
+                "price":5.4,
+                "description":""
+            },
+            "peito-de-peru-com-catupiry":{
+                "name":"Peito de Peru com Catupiry",
+                "price":5.7,
+                "description":""
+            },
+            "peito-de-peru-com-cheddar":{
+                "name":"Peito de Peru com Cheddar",
+                "price":5.4,
+                "description":""
+            },
+            "peito-de-peru-com-mussarela":{
+                "name":"Peito de Peru com Mussarela",
+                "price":5.7,
+                "description":""
+            },
+            "peito-de-peru-com-provolone":{
+                "name":"Peito de Peru com Provolone",
+                "price":5.4,
+                "description":""
+            },
+            "portuguesa":{
+                "name":"Portuguesa",
+                "price":5.9,
+                "description":"ovo, presunto, mussarela"
+            },
+            "provolone":{
+                "name":"Provolone",
+                "price":4.9,
+                "description":""
+            },
+            "quatro-queijos":{
+                "name":"Quatro Queijos",
+                "price":5.9,
+                "description":"catupiry, cheddar, mussarela e provolone"
+            },
+            "ricota":{
+                "name":"Ricota",
+                "price":4.9,
+                "description":""
+            },
+            "tres-queijos":{
+                "name":"Três Queijos",
+                "price":5.4,
+                "description":"catupiry, mussarela e provolone"
+            },
+            "banana-com-canela":{
+                "name":"Banana com Canela",
+                "price":5.4,
+                "description":""
+            },
+            "banana-com-chocolate":{
+                "name":"Banana com Chocolate",
+                "price":5.8,
+                "description":""
+            },
+            "banana-com-doce-de-leite":{
+                "name":"Banana com Doce de Leite",
+                "price":5.8,
+                "description":""
+            },
+            "brigadeiro":{
+                "name":"Brigadeiro",
+                "price":5.8,
+                "description":"chocolate com granulado"
+            },
+            "chocolate":{
+                "name":"Chocolate",
+                "price":5.4,
+                "description":""
+            },
+            "doce-de-leite":{
+                "name":"Doce de Leite",
+                "price":5.4,
+                "description":""
+            },
+            "romeu-e-julieta":{
+                "name":"Romeu e Julieta",
+                "price":5.8,
+                "description":"goiaba com mussarela"
+            },
+            "agadir":{
+                "name":"Agadir",
+                "price":25,
+                "description":"calabresa fatiada, catupiry, mussarela, maionese, cebola e tomate"
+            },
+            "alladin":{
+                "name":"Alladin",
+                "price":20,
+                "description":"presunto, mussarela, maionese, cebola e tomate"
+            },
+            "carne-seca":{
+                "name":"Carne Seca",
+                "price":29,
+                "description":"carne seca, catupiry, mussarela, maionese, cebola e tomate"
+            },
+            "cheddar":{
+                "name":"Cheddar",
+                "price":26,
+                "description":"frango desfiado, champignon, cheddar, mussarela, maionese, cebola, milho "
+            },
+            "egipcio":{
+                "name":"Egípcio",
+                "price":29,
+                "description":"salame, presunto, catupiry, mussarela, provolone, maionese, cebola e tomate"
+            },
+            "faquir":{
+                "name":"Faquir",
+                "price":26,
+                "description":"atum temperado, mussarela, maionese, cebola e tomate"
+            },
+            "farao":{
+                "name":"Faraó",
+                "price":26,
+                "description":"rosbife, mussarela, maionese, cebola e tomate"
+            },
+            "kalifa":{
+                "name":"Kalifa",
+                "price":30,
+                "description":"filé mignon, catupiry, mussarela, maionese, cebola e tomate"
+            },
+            "kalifa-especial":{
+                "name":"Kalifa Especial",
+                "price":34,
+                "description":"filé mignon, catupiry, mussarela, bacon, ovo, maionese, cebola e tomate"
+            },
+            "karnak":{
+                "name":"Karnak",
+                "price":29,
+                "description":"peito de peru, champignon, catupiry, mussarela, maionese, cebola e tomate"
+            },
+            "libanes":{
+                "name":"Libanês",
+                "price":28,
+                "description":"rosbife, escarola, presunto, catupiry, mussarela, maionese, cebola e tomate"
+            },
+            "miquerinos":{
+                "name":"Miquerinos",
+                "price":28,
+                "description":"lombo, bacon, catupiry, mussarela, maionese, cebola e tomate"
+            },
+            "nilo":{
+                "name":"Nilo",
+                "price":29,
+                "description":"bacon, presunto, ovos, catupiry, mussarela, maionese, cebola e tomate"
+            },
+            "shazan":{
+                "name":"Shazan",
+                "price":26,
+                "description":"filé de frango, catupiry, mussarela, maionese, cebola e tomate"
+            },
+            "tebas":{
+                "name":"Tebas",
+                "price":29,
+                "description":"frango desfiado, champignon, catupiry, mussarela, maionese, cebola e tomate"
+            },
+            "vegetariano":{
+                "name":"Vegetariano",
+                "price":29,
+                "description":"palmito, escarola, milho, catupiry, mussarela, cebola e tomate"
+            },
+            "kibe":{
+                "name":"Kibe",
+                "price":4.9,
+                "description":""
+            },
+            "coxinha":{
+                "name":"Coxinha",
+                "price":4.9,
+                "description":""
+            },
+            "coalhada-fresca":{
+                "name":"Coalhada fresca",
+                "price":6,
+                "description":"230 ml"
+            },
+            "cerveja-lata":{
+                "name":"Cerveja lata",
+                "price":4.5,
+                "description":""
+            },
+            "cerveja-long-neck":{
+                "name":"Cerveja long neck",
+                "price":6,
+                "description":""
+            },
+            "h20-limao":{
+                "name":"H20 Limão",
+                "price":4.5,
+                "description":""
+            },
+            "refrigerante-2litros":{
+                "name":"Refrigerante 2Litros",
+                "price":10,
+                "description":""
+            },
+            "refrigerante-600ml":{
+                "name":"Refrigerante 600ml",
+                "price":6,
+                "description":""
+            },
+            "refrigerante-lata":{
+                "name":"Refrigerante Lata",
+                "price":4,
+                "description":""
+            },
+            "agua-mineral":{
+                "name":"Água Mineral",
+                "price":2.5,
+                "description":""
+            },
+            "su-fresh":{
+                "name":"Su Fresh",
+                "price":5,
+                "description":""
             }
         }
     }
