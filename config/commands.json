@@ -20,19 +20,19 @@
     "order-join": {
         "alias": [],
         "endpoint": "#",
-        "help": "order-join [username] [item-id] [quantity]",
+        "help": "order-join [username] [item-id] [quantity] [obs](optional)",
         "description": "Adds a request to an open order"
     },
     "order-custom": {
         "alias": [],
         "endpoint": "#",
-        "help": "order-custom [username] [price]",
+        "help": "order-custom [username] [item-label] [price]",
         "description": "Adds a custom request to an open order"
     },
     "order-shared": {
         "alias": [],
         "endpoint": "#",
-        "help": "order-shared [item-id] [quantity]",
+        "help": "order-shared [item-id] [quantity] [obs](optional)",
         "description": "Adds a request to everyone in an open order"
     },
     "order-delete": {

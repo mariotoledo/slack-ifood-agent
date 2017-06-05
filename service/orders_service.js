@@ -36,10 +36,10 @@ module.exports = (function OrdersService() {
 
 			return {
 				success: true,
-				message: 'Order at ' + restaurant.name + ' created by @' + user.name + ' started successfully'
+				message: '@here: Order at ' + restaurant.name + ' created by @' + user.name + ' started successfully\nYou can join the order by using "order-join" command or check the menu by using "menu" command'
 			};
 		},
-		join_order: function join_order(user_id, owner_username, item_id, quantity){
+		join_order: function join_order(user_id, owner_username, item_id, quantity, obs){
 			var order;
 
 			if(owner_username.startsWith('<@')){
@@ -65,10 +65,10 @@ module.exports = (function OrdersService() {
 				};
 	        }
 
-	        if(!quantity || quantity < 0){
+	        if(quantity < 1){
 	            return {
 					success: false,
-					message: 'Quantity must be highter than 1'
+					message: 'Quantity must be higher than 0'
 				};
 	        }
 
@@ -83,18 +83,22 @@ module.exports = (function OrdersService() {
 	        	userRequest[item_id] = {
 	        		name: item.name,
 	        		price: item.price,
-	        		quantity: quantity
+	        		quantity: quantity,
 	        	}
 	        else
 	        	userRequest[item_id].quantity = parseInt(userRequest[item_id].quantity) + 
 	        								    parseInt(quantity);
+
+	     	if(obs) {
+	     		userRequest[item_id].obs = obs;
+	     	}
 
 	        return {
 				success: true,
 				message: item.name + ' (x' + quantity + ') added succesfully by @' + user.name
 			};
 		},
-		join_custom: function join_custom(user_id, owner_username, price){
+		join_custom: function join_custom(user_id, owner_username, label, price){
 			var order;
 
 			if(owner_username.startsWith('<@')){
@@ -108,6 +112,13 @@ module.exports = (function OrdersService() {
 	        	return {
 					success: false,
 					message: 'Order from ' + owner_username + ' not found'
+				};
+	        }
+
+	        if(label.trim() == ''){
+	        	return {
+					success: false,
+					message: 'You must add an label'
 				};
 	        }
 
@@ -131,12 +142,16 @@ module.exports = (function OrdersService() {
         		quantity: 1
         	}
 
+        	if(obs) {
+	     		userRequest[item_id].obs = obs;
+	     	}
+
         	return {
 				success: true,
 				message: 'R$ ' + price + ' added succesfully by @' + user.name
 			};
 		},
-		join_shared: function join_shared(user_id, item_id, quantity){
+		join_shared: function join_shared(user_id, item_id, quantity, obs){
 			var order = this.find_by_user(user_id);
 
 	        if(!order) {
@@ -155,10 +170,10 @@ module.exports = (function OrdersService() {
 				};
 	        }
 
-	        if(!quantity || quantity < 0){
+	        if(quantity < 1){
 	            return {
 					success: false,
-					message: 'Quantity must be highter than 1'
+					message: 'Quantity must be higher than 0'
 				};
 	        }
 
@@ -379,17 +394,21 @@ module.exports = (function OrdersService() {
 	                if(userRequestItems && Object.keys(userRequestItems).length > 0){
 	                    var user = slackTerminal.getRTMClient().dataStore.getUserById(user_id);
 
-	                    message += '- @' + user.name + ':\n';
+	                    message += '- @' + username + ':\n';
 	                
-	                    Object.keys(userRequestItems).forEach(function(key){
+	                    Object.keys(userRequestItems).forEach(function(item_key){
 	                        message += '\t- ' + 
-	                                    userRequestItems[key].name + 
+	                                    userRequestItems[item_key].name + 
 	                                    ' [x' + 
-	                                    userRequestItems[key].quantity + 
+	                                    userRequestItems[item_key].quantity + 
 	                                    ']' +
 	                                    ' (R$ ' + 
-	                                    (userRequestItems[key].price * userRequestItems[key].quantity) + 
+	                                    (userRequestItems[item_key].price * userRequestItems[item_key].quantity) + 
 	                                    ')\n';
+
+	                        if(userRequestItems[item_key].obs){
+	                        	message += '(Obs: ' + userRequestItems[item_key].obs + ')\n';
+	                        }
 	                    }); 
 	                }
 	            });

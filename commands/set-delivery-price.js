@@ -5,7 +5,7 @@ var orders_service = require('../service/orders_service')
 
 module.exports = function (param) {
     if(param.args.length > 0){
-        var price = parseInt(param.args[0]);
+        var price = parseFloat(param.args[0]);
 
         util.postMessage(
             param.channel,
