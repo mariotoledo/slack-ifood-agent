@@ -1,7 +1,4 @@
-var request = require('request');
 var util    = require('../util');
-var slackTerminal   = require('slack-terminalize')
-
 var orders_service = require('../service/orders_service')
 
 module.exports = function (param) {

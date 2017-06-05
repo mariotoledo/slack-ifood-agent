@@ -142,10 +142,6 @@ module.exports = (function OrdersService() {
         		quantity: 1
         	}
 
-        	if(obs) {
-	     		userRequest[item_id].obs = obs;
-	     	}
-
         	return {
 				success: true,
 				message: 'R$ ' + price + ' added succesfully by @' + user.name
@@ -157,7 +153,7 @@ module.exports = (function OrdersService() {
 	        if(!order) {
 	        	return {
 					success: false,
-					message: 'You are not an owners or you do not have any open orders'
+					message: 'You are not an owner or you do not have any open orders'
 				};
 	        }
 

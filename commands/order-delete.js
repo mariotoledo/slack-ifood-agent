@@ -1,4 +1,3 @@
-var request = require('request');
 var util    = require('../util');
 
 var orders_service = require('../service/orders_service');
