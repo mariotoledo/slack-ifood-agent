@@ -7,7 +7,7 @@ A slackbot that helps groups of users to make orders from [iFood](ifood.com.br) 
 In large groups of people working together, it may be hard to ask for food and keep track of every person in a chat.
 This slackbot helps to organize the order by providing a way that multiple persons make requests to a single iFood order on Slack, automatically calculating the price each one must pay.
 
-When someone creates an order, an alert will pop on channel, and users can join using "order-join" command or use the "menu" command to check all the possible items. You can also add a shared request (for everyone share) or a custom request (by adding the price instead of the desired item). Users can also give up on request or order when using specific commands.
+When someone creates an order, an alert will pop on channel, and users can join using "order-join" command or use the "menu" command to check all the possible items. You can also add a shared request (shared for everyone) or a custom request (by adding the price instead of the desired item). Users can also give up on request or order when using specific commands.
 
 By closing the order, all prices will be calculated automatically and all users will receive how much they must pay, while the order creator will have a list to what order on iFood.
 
@@ -47,13 +47,13 @@ If you want to use Slack iFood Agent on your team's Slack, then you must configu
 ```javascript
 var slackTerminal = require('slack-terminalize');
 
-slackTerminal.init('xoxb-187134790194-VOwZshMN1qT4ObQvkFTppTRv', {
+slackTerminal.init('PUT API TOKEN HERE', {
 }, {
     CONFIG_DIR: __dirname + '/config',
     COMMAND_DIR: __dirname + '/commands'
 });
 ```
-- Configuring restaurants and menus: All restaurants and menus must be configured in **restaurants.json** file. As **iFood doesn't not have an API**, we made a parser as shown on **parse.js**.
+- Configuring restaurants and menus: All restaurants and menus must be configured in **restaurants.json** file. As **iFood does not have an API**, we made a parser as shown on **parse.js**.
 - Turning agent available for use: You can execute the agent on your computer (node index.js) or deploying it to an instance like [Heroku](https://heroku.com/).
 
 ## Development
